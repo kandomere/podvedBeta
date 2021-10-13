@@ -1,0 +1,43 @@
+{% extends 'updocks/base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %}{% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <h2>Дата конца срока {{ post.date_end|date:"Y-m-d" }}</h2>
+
+    {% if post.days_count < 0 %}
+    <div></div>
+    {% else %}
+        <h3>оставшееся время {{ post.days_count }}</h3>
+    {% endif %}
+
+{##}
+    <a href="{{ post.cover.url }}" target="_blank">договор</a>
+    {% if post.more %}
+        <br>
+    <a href="{{ post.more.url }}" target="_blank">Дополнительные документы</a>
+    {% endif %}
+
+    {{ pf }}
+
+
+    <br>
+
+
+{#    <button type="submit" class=""><a href="{{ post.get_absolute_url }}update">редактировать</a></button>#}
+    <p>Добавил договор: {{ post.author }}</p>
+    {% if post.author == request.user %}
+        <a class="btn btn-primary" href="{{ post.get_absolute_url }}update" role="button">Редактировать</a>
+        {% else %}
+        <h2>Вы не автор</h2>
+    {% endif %}
+
+
+    <p>{{ er }}</p>
+
+
+
+    {{ post.body|linebreaks }}
+{% endblock %}

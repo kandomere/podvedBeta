@@ -1,0 +1,56 @@
+{% extends 'updocks/base.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+{% endif %}
+        <h1>Список моих договоров</h1>
+        <a href="{% url 'draf' %}">Список законченных</a>
+        {% for post in posts %}
+            {% if post.days_count < 8 %}
+
+                        <div class="red-color px-3">
+                        <a href="{{ post.get_absolute_url }}">
+                            <h1>{{ post.title }}
+                                <h4>Дата конца срока {{ post.date_end|date:"d-m-Y" }}</h4>
+                                {% if post.days_count < 0 %}
+                                    <h5>Срок договора вышел</h5>
+                                    {% else %}
+                                    <h5>{{ post.days_count }} дней до конца срока</h5>
+                                {% endif %}
+                                <a href="{{ post.cover.url }}" target="_blank">договор</a>
+                                <p>Добавил: {{ post.author }}</p>
+                            </h1>
+                        </a>
+                        </div>
+                    {% elif post.days_count < 30 %}
+                        <div class="green-color px-3">
+                        <a href="{{ post.get_absolute_url }}">
+                            <h1>{{ post.title }}
+                                <h4>Дата конца срока {{ post.date_end|date:"d-m-Y" }}</h4>
+                                {% if post.days_count < 0 %}
+                                    <h5>Срок договора вышел</h5>
+                                    {% else %}
+                                    <h5>{{ post.days_count }} дней до конца срока</h5>
+                                {% endif %}
+                                <a href="{{ post.cover.url }}" target="_blank">договор</a>
+                                <p>Добавил: {{ post.author }}</p>
+                            </h1>
+                        </a>
+                        </div>
+                    {% else %}
+                        <div class="blue-color px-3">
+                        <a href="{{ post.get_absolute_url }}">
+                            <h1>{{ post.title }}
+                                <h4>Дата конца срока {{ post.date_end|date:"d-m-Y" }}</h4>
+                                <h5>{{ post.days_count }} дней до конца срока</h5>
+                                <a href="{{ post.cover.url }}" target="_blank">договор</a>
+                                <p>Добавил: {{ post.author }}</p>
+                            </h1>
+                        </a>
+                         </div>
+
+                    {% endif %}
+        {% endfor %}
+        {% include "pagination.html" with page_obj=posts %}
+
+{% endblock %}

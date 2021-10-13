@@ -1,0 +1,56 @@
+/*.clicker a {*/
+/*    -moz-transition:color .2s ease-in;*/
+/*    -o-transition:color .2s ease-in;*/
+/*    -webkit-transition:color .2s ease-in;*/
+
+/*    text-decoration: none;*/
+
+/*}*/
+
+/*.clicker:hover{*/
+/*    background:#eee;*/
+/*}*/
+/*.clicker a:hover {*/
+/*    text-decoration: none; !* Убираем подчёркивание *!*/
+/*    color: #007bff; !* Цвет ссылки *!*/
+
+/*   }*/
+.red-color {
+    -moz-transition:color .2s ease-in;
+    -o-transition:color .2s ease-in;
+    -webkit-transition:color .2s ease-in;
+    background: #ffdbdb;
+    text-decoration: none;
+
+}
+
+.red-color:hover{
+    background: #f6f4f4;
+}
+
+.blue-color {
+    -moz-transition:color .2s ease-in;
+    -o-transition:color .2s ease-in;
+    -webkit-transition:color .2s ease-in;
+    background: #dbe9ff;
+    text-decoration: none;
+
+}
+
+.blue-color:hover{
+    background: #f6f4f4;
+}
+
+.green-color {
+    -moz-transition:color .2s ease-in;
+    -o-transition:color .2s ease-in;
+    -webkit-transition:color .2s ease-in;
+    background: #fffadb;
+    text-decoration: none;
+
+}
+
+.green-color:hover{
+    background: #fffadb;
+}
+

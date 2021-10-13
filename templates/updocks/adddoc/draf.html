@@ -1,0 +1,31 @@
+{% extends 'updocks/base.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <div class="row ">
+            <div class="col-12">
+                <h1>Список истекших договоров</h1>
+
+            </div>
+            <div class="col-12  ">
+                 {% for post in object_list %}
+        <div class="px-3 bg-light">
+        <a href="{{ post.get_absolute_url }}"><h2>{{ post.title }}</h2></a>
+        <h2>Дата конца срока {{ post.date_end|date:"d-m-Y" }}</h2>
+        {% if post.days_count < 0 %}
+            <h5>Срок договора вышел</h5>
+        {% else %}
+            <h5>{{ post.days_count }} дней до конца срока</h5>
+        {% endif %}
+        <a href="{{ post.cover.url }}" target="_blank">договор</a>
+        </div>
+        <br>
+    {% endfor %}
+
+    {% include 'pagination.html' %}
+        </div>
+
+    {% else %}
+        <h1>Авторизуйтесь по ссылке <a href="{{ '/login' }}">войти</a></h1>
+    {% endif %}
+{% endblock %}
