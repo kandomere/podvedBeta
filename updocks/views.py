@@ -58,7 +58,7 @@ def add_post_and_file(request):
 
 
 class ListDocsPageView(ListView):
-    queryset = Post.objects.all().order_by('date_end')
+    queryset = Post.objects.filter(status='published').order_by('date_end')
     model = Post
     template_name = 'updocks/adddoc/list_docs.html'
     paginate_by = 5
@@ -66,7 +66,8 @@ class ListDocsPageView(ListView):
 
 def curuser(request):
     try:
-        object_list = Post.objects.filter(author=request.user)
+        # object_list = Post.objects.filter(author=request.user)
+        object_list = Post.objects.filter(author=request.user).order_by('author', 'status')
 
         paginator = Paginator(object_list, 5)  # 3 поста на каждой странице
         page = request.GET.get('page')
